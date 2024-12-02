@@ -1,0 +1,6 @@
+ projeyi çalıştırmak için : php artisan serve
+ projedeki tabloları veritabanına aktarmakdan önce: app/providers/AppServiceProviders içine 
+ use Illuminate\Support\Facades\Schema;
+ ve boot kısmına 
+ Schema::defaultStringLength(191); kodlarını yerleştiriyoruz
+ projedeki veritabanı tablolarını veritabanına aktarmak için : php artisan migrate:fresh 
