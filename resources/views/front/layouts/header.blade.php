@@ -26,10 +26,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('/')}}">Anasayfa</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('hakkimda')}}">Hakkımda</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('blog')}}">Blog Yazılarım</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{route('iletisim')}}">İletişim</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 @if (Request::segment(1) == '') text-warning @endif" href="{{route('/')}}">Anasayfa</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 @if (Request::segment(1) == 'hakkimda') text-warning @endif" href="{{route('hakkimda')}}">Hakkımda</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 @if (Request::segment(1) == 'blog') text-warning @endif" href="{{route('blog')}}">Blog Yazılarım</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 @if (Request::segment(1) == 'iletisim') text-warning @endif" href="{{route('iletisim')}}">İletişim</a></li>
                     </ul>
                 </div>
             </div>

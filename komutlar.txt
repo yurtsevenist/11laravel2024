@@ -4,3 +4,11 @@
  ve boot kısmına 
  Schema::defaultStringLength(191); kodlarını yerleştiriyoruz
  projedeki veritabanı tablolarını veritabanına aktarmak için : php artisan migrate:fresh 
+
+ githubtan laravel projesi indirip çalıştırmak için
+ - zip olarak indirip çıkartın
+ - .env example dosyasını kopyala yapıştır ile çoğaltın ve ismini .env olarak değiştirin
+ - terminal ekranında composer update komutunu çalıştırın
+ - php artisan key:generate komutu ile key üretin
+ - php artisan serve ile çalıştırın
+ - eğer veritabanına tablo yükleyecekseniz .env içindeki ayarlamaları yapıp yukardaki aktarma komutunu kullanın

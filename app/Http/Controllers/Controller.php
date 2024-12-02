@@ -16,7 +16,7 @@ class Controller extends BaseController
     }
     public function about()
     {
-        return view('front.about');
+        return view('front.about');//front klasörü içindeki about.blade.php
     }
     public function contact()
     {
