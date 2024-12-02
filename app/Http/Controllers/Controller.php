@@ -14,4 +14,16 @@ class Controller extends BaseController
     {
         return view('front.main');
     }
+    public function about()
+    {
+        return view('front.about');
+    }
+    public function contact()
+    {
+        return view('front.contact');
+    }
+    public function blog()
+    {
+        return view('front.blog');
+    }
 }

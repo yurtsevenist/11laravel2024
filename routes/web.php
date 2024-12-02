@@ -13,4 +13,7 @@ use App\Http\Controllers\Controller;
 |
 */
 
-Route::get('/', [Controller::class, 'main']);
+Route::get('/', [Controller::class, 'main'])->name('/');
+Route::get('hakkimda', [Controller::class, 'about'])->name('hakkimda');
+Route::get('iletisim', [Controller::class, 'contact'])->name('iletisim');
+Route::get('blog', [Controller::class, 'blog'])->name('blog');
