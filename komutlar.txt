@@ -12,3 +12,10 @@
  - php artisan key:generate komutu ile key üretin
  - php artisan serve ile çalıştırın
  - eğer veritabanına tablo yükleyecekseniz .env içindeki ayarlamaları yapıp yukardaki aktarma komutunu kullanın
+
+ projeye yeni bir veritabanı tablosu eklemek için 
+ php artisan make:model Modelismi -m
+
+ oluşturduğumuz tabloya sahte veri üretmek için 
+ - php artisan make:factory FactoryIsmı
+ 

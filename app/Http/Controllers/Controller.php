@@ -6,13 +6,15 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use App\Models\Blog;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function main()
     {
-        return view('front.main');
+        $blogs=Blog::orderBy('created_at','desc')->take(5)->get();
+        return view('front.main',compact('blogs'));
     }
     public function about()
     {
@@ -23,7 +25,8 @@ class Controller extends BaseController
         return view('front.contact');
     }
     public function blog()
-    {
-        return view('front.blog');
+    {   
+        $blogs=Blog::orderBy('created_at','desc')->paginate(10);
+        return view('front.blog',compact('blogs'));
     }
 }

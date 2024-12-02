@@ -13,5 +13,40 @@
             </div>
         </div>
     </header>
-    
+       <!-- Main Content-->
+       <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-12 col-lg-10 col-xl-9">
+                <div class="row">
+                @foreach ($blogs as $blog )
+                     <!-- Post preview-->
+                  <div class="col-md-4">
+                    <img src="{{$blog->image}}"  class="img-fluid pt-5" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="post-preview">
+                        <a href="post.html">
+                            <h2 class="post-title">{{$blog->title}}</h2>
+                            <h3 class="post-subtitle">{{Str::words($blog->content,20)}}</h3>
+                        </a>
+                        <p class="post-meta">
+                            Yazar
+                            <a href="#!">{{$blog->author}}</a>
+                             {{-- {{Carbon\Carbon::parse($blog->created_at)->format('d.m.Y H:i')}} --}}
+                             {{$blog->created_at->diffForHumans()}}
+                        </p>
+                    </div>
+                  </div>
+                <!-- Divider-->
+                <hr class="my-4" />  
+                @endforeach  
+                <div class="col-6 offset-3 text-center">
+                    {{ $blogs->links() }}
+                 </div>              
+                </div>
+               <!-- Pager-->
+               
+            </div>
+        </div>
+    </div>
 @endsection
