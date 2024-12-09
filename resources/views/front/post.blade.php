@@ -28,8 +28,8 @@
                                     Blog Tarihi: {{$blog->created_at->diffForHumans()}} 
                                 </div>
                                 <div class="col-4">
-                                     <a class="ml-1 border rounded p-2" href=""><i class=" bi bi-hand-thumbs-up fs-5"></i>&nbsp; {{$blog->like}}</a> 
-                                     <a class="ml-1 border rounded p-2" href=""><i class=" bi bi-eye fs-5"></i>&nbsp; {{$blog->hit}}</a>                                      
+                                     <a class="btn btn-sm border rounded p-2 likeClick" id="{{$blog->id}}"><i id="like" class="bi bi-hand-thumbs-up fs-5"></i>&nbsp;<span id="likecount">{{$blog->like}}</span></a> 
+                                     <a class="btn btn-sm border rounded p-2" href=""><i class="bi bi-eye fs-5"></i>&nbsp; {{$blog->hit}}</a>                                      
                                 </div>
                             </div>
                         </p>
@@ -48,4 +48,46 @@
                     </div>
                 </div>
             </article>
+@endsection
+@section('css')
+    
+@endsection
+@section('js')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  
+     <script>
+    $(function() {
+        $('.likeClick').click(function () {
+         id = $(this)[0].getAttribute('id');         
+         $.ajax({
+           type: 'GET',
+                 url: '{{route('likeBlog')}}',
+                 data: {
+                     id: id,
+                 },
+                 success:function(data)
+                 {
+                    console.log(data);
+                    $("#likecount").html(data.like);     
+                    if(data.tur==0)
+                    {
+                        $('#like').removeClass('bi bi-hand-thumbs-up-fill fs-5');
+                        $('#like').addClass('bi bi-hand-thumbs-up fs-5');   
+                    }
+                    else
+                    {
+                        $('#like').removeClass('bi bi-hand-thumbs-up fs-5');
+                        $('#like').addClass('bi bi-hand-thumbs-up-fill fs-5');   
+                    }
+                    
+                 }
+
+         })
+        
+     });
+    })
+ </script>
+    })
+</script> 
+     
 @endsection

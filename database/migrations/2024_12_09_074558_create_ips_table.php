@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('ip')->nullable()->comment("Kullanıcını ip adresi");            
             $table->integer('blog_id')->default(0)->comment("blog id si");           
             $table->integer('user_id')->default(0)->comment("Kullanıcı kayıtlı ise id si");
+            $table->integer('tur')->default(0)->comment("0 ise okunma 1 like dislike vs");
             $table->timestamps();
         });
     }

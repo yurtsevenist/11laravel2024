@@ -36,12 +36,13 @@ class Controller extends BaseController
     {
         $ip = $request->getClientIp();     
         $blog=Blog::whereId($id)->first();
-        $ara=Ip::whereBlog_id($blog->id)->whereIp($ip)->first();//bu yazı bu ip adresi tarafından daha önce okunmuşmu
+        $ara=Ip::whereBlog_id($blog->id)->whereIp($ip)->whereTur(0)->first();//bu yazı bu ip adresi tarafından daha önce okunmuşmu
         if(!$ara)
         {
             $kayit=new Ip;
             $kayit->ip=$ip;
             $kayit->blog_id=$blog->id;
+            $kayit->tur=0;
             $kayit->save();
             $blog->hit+=1;
             $blog->save();
@@ -54,6 +55,37 @@ class Controller extends BaseController
         $yazar=Str::title(str_replace('-', ' ', $slug));
         $blogs=Blog::where('author',$yazar)->orderBy('created_at','DESC')->paginate(10);
         return view('front.blog',compact('blogs'));
+    }
+    public function likeBlog(Request $request)
+    {
+        $ip = $request->getClientIp();     
+        $blog=Blog::whereId($request->id)->first();
+        $ara=Ip::whereBlog_id($blog->id)->whereIp($ip)->whereTur(1)->first();//bu yazı bu ip adresi tarafından daha önce okunmuşmu
+        $tur=0;//0 geri al 1 beğen
+        if(!$ara)
+        {
+            $kayit=new Ip;
+            $kayit->ip=$ip;
+            $kayit->blog_id=$blog->id;
+            $kayit->tur=1;
+            $kayit->save();
+            $blog->like+=1;
+            $blog->save();
+            $tur=1;
+        }
+        else
+        {   if($blog->like>0)
+            {
+                $blog->like-=1;
+                $blog->save();
+            }
+            $tur=0;
+            $ara->delete();
+        }
+        return response()->json([
+            'like'=>$blog->like,
+            'tur'=>$tur,
+        ]);
     }
     
 }

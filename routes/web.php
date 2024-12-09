@@ -21,4 +21,5 @@ Route::prefix('blog-yazilari')->group(function(){
     Route::get('blog', [Controller::class, 'blog'])->name('blog');
     Route::get('blog-detay/{slug}/{id}', [Controller::class, 'blogdetay'])->name('blog-detay');
     Route::get('yazar-detay/{slug}', [Controller::class, 'yazardetay'])->name('yazar-detay');
+    Route::get('likeBlog',[Controller::class,'likeBlog'])->name('likeBlog');
 });
