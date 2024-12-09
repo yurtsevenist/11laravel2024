@@ -25,13 +25,13 @@
                       </div>
                       <div class="col-md-8">
                         <div class="post-preview">
-                            <a href="post.html">
+                            <a href="{{route('blog-detay',[Str::slug($blog->title),$blog->id])}}">
                                 <h2 class="post-title">{{$blog->title}}</h2>
                                 <h3 class="post-subtitle">{{Str::words($blog->content,20)}}</h3>
                             </a>
                             <p class="post-meta">
                                 Yazar
-                                <a href="#!">{{$blog->author}}</a>
+                                <a href="{{route('yazar-detay',Str::slug($blog->author))}}">{{$blog->author}}</a>
                                  {{-- {{Carbon\Carbon::parse($blog->created_at)->format('d.m.Y H:i')}} --}}
                                  {{$blog->created_at->diffForHumans()}}
                             </p>
