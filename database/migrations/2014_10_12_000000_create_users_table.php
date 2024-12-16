@@ -19,7 +19,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('image')->nullable();
+            $table->string('ip')->nullable();
             $table->rememberToken();
+            $table->integer('who')->default(0)->comment("0 ise kullanıcı 1 yöentici");
             $table->timestamps();
         });
     }

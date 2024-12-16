@@ -13,5 +13,11 @@
             </div>
         </div>
     </header>
-    
+    {{-- <div class="col-12 reklam">
+        <div class="alert bg-light shadow-sm alert-dismissible mb-1  text-center">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <a class="" target="_blank" href="https://www.parcaniz.com/"><img width="30%" src="{{ asset('front') }}/assets/img/parcaniz.jpg" alt="" srcset=""></a>
+           
+        </div>
+    </div> --}}
 @endsection

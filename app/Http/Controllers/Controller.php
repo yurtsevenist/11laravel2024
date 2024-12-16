@@ -10,10 +10,66 @@ use App\Models\Blog;
 use App\Models\Ip;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use Illuminate\Http\Request;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public function login()
+    {
+        return view('auth.login');
+    }
+    public function loginPost(Request $request)
+    {
+        $request->flash();
+       
+       
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {                 
+           $user=User::whereId(Auth::user()->id)->first();
+           $user->updated_at=Carbon::now();   
+           $user->save();          
+           if(Auth::user()->who==1)
+           {              
+             return redirect()->route('panel')->with("info","Hoşgeldiniz ".Auth::user()->name);
+           }                  
+            else
+            {
+            return redirect()->route('/')->withInfo("Hoşgeldiniz ".Auth::user()->name);
+            }                                   
+                         
+         
+       }
+       
+       return redirect()->route('login')->withErrors('E-Posta Adresiniz veya Şifreniz Hatalı!!');
+       
+     
+    }
+    public function dashboard()
+    {
+        return view('back.dashboard');
+    }
+    public function logout()
+    {
+       
+        Auth::logout();
+        return redirect()->route('/')->withSuccess('Oturum Kapatıldı');
+    }
+    public function register()
+    {
+        return view('auth.register');
+    }
+    public function registerPost(Request $request)
+    {
+        dd($request);
+    }
+    public function yetkisiz()
+    {
+        return view("401");
+    }
     public function main()
     {
         $blogs=Blog::orderBy('created_at','desc')->take(5)->get();

@@ -32,6 +32,11 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 @if (Request::segment(1) == 'hakkimda') text-warning @endif" href="{{route('hakkimda')}}">Hakkımda</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 @if (Request::segment(1) == 'blog-yazilari') text-warning @endif" href="{{route('blog')}}">Blog Yazılarım</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 @if (Request::segment(1) == 'iletisim') text-warning @endif" href="{{route('iletisim')}}">İletişim</a></li>
+                        @auth
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 @if (Request::segment(1) == 'gfhg') text-warning @endif" href="{{route('logout')}}">{{Auth::user()->name}}</a></li>
+                        @else
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4 @if (Request::segment(1) == 'login') text-warning @endif" href="{{route('login')}}">Oturum Aç</a></li>
+                        @endauth
                     </ul>
                 </div>
             </div>
